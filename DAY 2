@@ -1,0 +1,35 @@
+#DAY 2 OF Dr.Viswanathan challenge 
+#Diagonal sum in binary tree
+
+
+#User function Template for python3
+
+'''
+# Node Class:
+class Node:
+    def _init_(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+'''
+
+from collections import defaultdict
+class Solution:
+    def diagonalSum(self, root):
+        d=defaultdict(int)
+        
+        def helper(root,slope):
+            if(root is not None):
+                d[slope]+=root.data
+                helper(root.left,slope+1)
+                helper(root.right,slope)
+        
+        helper(root,0)
+        res=[]
+        n=len(d)
+        for i in range(n):
+            res.append(d[i])
+        return res
+        #:param root: root of the given tree.
+        
+        #code here
