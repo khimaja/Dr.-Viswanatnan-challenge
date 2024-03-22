@@ -1,0 +1,37 @@
+#DAY1 OF Dr.Viswanathan challenge 
+
+#User function Template for python3
+
+'''
+class Node:
+    def _init_(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+'''
+
+class Solution:
+    #Function to store the zig zag order traversal of tree in a list.
+    def zigZagTraversal(self, root):
+        queue = [root]
+        ret = [root.data]
+        parity = 1
+        while queue:
+            currLevel = []
+            currLevelData = []
+            for nodes in queue:
+                if nodes.left:
+                    currLevel.append(nodes.left)
+                    currLevelData.append(nodes.left.data)
+                if nodes.right:
+                    currLevel.append(nodes.right)
+                    currLevelData.append(nodes.right.data)
+            if parity:
+                ret.extend(currLevelData[::-1])
+                queue = currLevel[:]
+                parity = 0
+            else:
+                ret.extend(currLevelData[:])
+                queue = currLevel[:]
+                parity = 1
+        return ret
