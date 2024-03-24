@@ -1,0 +1,9 @@
+#Insert an Element at the Bottom of a Stack
+#DAY4OFDr.viswanathanchallenge
+
+#User function Template for python3
+class Solution:
+    def insertAtBottom(self,st,x):
+        # code here
+        l = [x] + st
+        return l
