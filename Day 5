@@ -1,0 +1,21 @@
+#day5 of 100 days challenge
+  #drviswanathan challenge
+
+#User function Template for python3
+class Solution:
+    def NBitBinary(self, n):
+        # code here
+        def generate_numbers(n, one, zero, out, res):
+            if n == 0:
+                res.append(out)
+                return
+            generate_numbers(n- 1, one+1, zero, out+ "1",res)
+            if one>zero:
+                generate_numbers(n-1, one, zero+1, out+'0', res)
+            
+    
+        res= []
+        one, zero=0, 0
+        out=''
+        generate_numbers(n, one, zero, out, res)
+        return res
