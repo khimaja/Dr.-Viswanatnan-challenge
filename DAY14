@@ -1,0 +1,51 @@
+
+'''
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+'''
+
+class Solution:
+    def kthCommonAncestor(self, root, k, x, y):
+        self.ans = float('inf')
+        self.f(root, k ,x, y)
+        return self.ans if self.ans != float('inf') else -1
+    
+    def f(self, root, k, x, y):
+        if not root: return float('inf')    #default value. denotes neither of x and y
+        #have been found on this path
+        
+        left = self.f(root.left, k, x, y)
+        
+        right = self.f(root.right, k, x, y)
+            
+        retval = float('inf')       #default return value. Denotes none of x or y found in the subtree
+        if left < 0 and right < 0:  #One value found in left and other in 
+        #right subtree. doesn't matter which value in which subtree.
+            retval = 0              #Denotes that current 
+            #node is the lowest common ancestor.
+        
+        elif left < 0 or right < 0: # Negative value in either subtree denotes 
+        #single value found in the left or right side.
+            retval = min(left, right)   #one will be negative, the other
+            #would be infinite integer. set retval to be whichever is lower.
+        
+        elif left != float('inf') or right != float('inf'): #positive value denotes
+        #that both x and y have been found
+            retval = min(left, right)   #now counting how far up this ancestor is from both x and y.
+        
+        
+        if root.data in [x,y]:  #if current node is x or y,
+            if retval < 0 :     #denotes that the other value is on this path only.
+                retval = 0      #so this is first common ancestor
+            else:
+                retval = -1     #otherwise this is a single value found on this path. return -1
+        
+        if retval == k-1:       #check whether current node is the answer.
+            self.ans = root.data
+        
+        if retval >= 0: return retval+1 #if both x and y have been found, then path inc by 1
+        
+        return retval - 1   #if only single value found, then also path increases by one.
