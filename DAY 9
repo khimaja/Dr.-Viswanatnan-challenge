@@ -1,0 +1,9 @@
+//DAY11
+
+class Solution:
+    def isEularCircuitExist(self, v, adj):
+        
+        for el in adj:
+            if len(el)%2!=0:
+                return 0
+        return 1
