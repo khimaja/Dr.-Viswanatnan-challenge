@@ -1,0 +1,20 @@
+'''
+class Node:
+    """ Class Node """
+    def __init__(self, value):
+        self.left = None
+        self.key = value
+        self.right = None
+'''
+
+class Solution:
+    def findMaxForN(self, root, n):
+        ele=-1
+        while(root):
+            if root.key==n:return root.key
+            elif root.key<n:
+                ele=root.key
+                root=root.right
+            else:
+                root=root.left
+        return ele
