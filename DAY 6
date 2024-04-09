@@ -1,0 +1,32 @@
+class Solution:
+    def isAdditiveSequence(self, n):
+       
+       def check(n1,n2,s,flag):
+           if(len(s)==0 and flag):
+               return True
+           n3 = str(n1+n2)
+           idx = min(len(s),len(n3))
+           if(n3==s[0:idx]):
+               return check(n2,int(n3),s[idx:],True)
+               
+           return False
+       
+       def findnumber(s):
+           
+           n = len(s)
+           for i in range(1,n-1):
+               n1=int(s[0:i])
+               if(str(n1)!=s[0:i]):
+                   break
+               for j in range(i+1,n):
+                   n2 = int(s[i:j])
+                   if(str(n2)!=s[i:j]):
+                       break
+                   if(check(n1,n2,s[j:],False)):
+                       return True
+           return False
+       
+       
+       
+       
+       return 1 if findnumber(n) else 0
