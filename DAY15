@@ -1,0 +1,19 @@
+//Sum of all substrings of a number
+//DAY15
+
+
+class Solution:
+    #Function to find sum of all possible substrings of the given string.
+    def sumSubstrings(self,s):
+        MOD = 10**9 + 7
+        prev = 0
+        res = 0
+        
+        for i in range(len(s)):
+            cur = int(s[i])
+            
+            prev = (prev*10 + cur*(i+1))%MOD
+            res += prev
+            res %= MOD
+        
+        return res
