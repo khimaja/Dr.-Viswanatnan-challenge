@@ -1,0 +1,72 @@
+from typing import List
+from heapq import heappush, heappop
+class Solution:
+    def findCity(self, n : int, m : int, edges : List[List[int]], distanceThreshold : int) -> int:
+        # cost = []
+        # for i in range(n):
+        #     temp = []
+        #     for j in range(n):
+        #         if i == j:
+        #             temp.append(0)
+        #         else:
+        #             temp.append(float('inf'))
+        #     cost.append(temp)
+        # for u, v, wt in edges:
+        #     cost[u][v] = wt
+        #     cost[v][u] = wt
+        # for k in range(n):
+        #     for i in range(n):
+        #         for j in range(n):
+        #             cost[i][j] = min(cost[i][j], cost[i][k] + cost[k][j])
+        # city = n + 1
+        # ans = -1
+        # for i in range(n):
+        #     count = 0
+        #     for j in range(n):
+        #         if cost[i][j] <= distanceThreshold:
+        #             count += 1
+        #     if count <= city:
+        #         ans = i
+        #         city = count
+        # return ans
+        
+        
+        
+        
+        adj = [[] for _ in range(n)]
+        for u, v, wt in edges:
+            adj[u].append([v, wt])
+            adj[v].append([u, wt])
+        def dijkstra(start):
+            dist = [float('inf')]*n
+            heap = []
+            dist[start] = 0
+            vis = [False]*n
+            # vis[start] = True
+            heappush(heap, [0, start])
+            reachableCities = 0
+            while heap:
+                dis, node = heappop(heap)
+                if dis > distanceThreshold:
+                    break
+                if vis[node]:
+                    continue
+                vis[node] = True
+                reachableCities += 1
+                for v, wt in adj[node]:
+                    if not vis[v]:
+                        if dis + wt < dist[v]:
+                            dist[v] = dis + wt
+                            heappush(heap, [dis + wt, v])
+            return reachableCities
+        city = n + 1
+        ans = -1
+        for u in range(n):
+            reachable = dijkstra(u)
+            if reachable <= city:
+                ans = u
+                city = reachable
+        return ans
+        
+        
+
