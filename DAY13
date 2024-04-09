@@ -1,0 +1,17 @@
+//DAY13
+
+class Solution:
+    def absolute_diff(self,root):
+        # Your code here
+        ino = []
+        def inorder(root):
+            if not root:
+                return 
+            inorder(root.left)
+            ino.append(root.data)
+            inorder(root.right)
+        inorder(root)
+        ans = float("inf")
+        for i in range(1, len(ino)):
+            ans = min(ans, ino[i] - ino[i-1])
+        return ans
