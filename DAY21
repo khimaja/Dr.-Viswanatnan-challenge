@@ -1,0 +1,16 @@
+//DAY21
+//
+
+class Solution:
+    def findSingle(self, n, arr):
+        dict1={}
+        for i in arr:
+            if i in dict1:
+                dict1[i]+=1
+            else:
+                dict1[i]=1
+        for key,values in dict1.items():
+            if values==1:
+                return key
+            elif values%2!=0:
+                return key
