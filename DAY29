@@ -1,0 +1,18 @@
+//DAY29
+
+#User function Template for python3
+
+class Solution:
+    
+    #Function to find two repeated elements.
+    def twoRepeated(self, arr , n):
+        #Your code here
+        repeated = []
+
+        for i in range(n + 2):
+            if arr[abs(arr[i])] > 0:
+                arr[abs(arr[i])] = -arr[abs(arr[i])]
+            else:
+                repeated.append(abs(arr[i]))
+    
+        return repeated
