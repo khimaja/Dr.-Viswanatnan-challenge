@@ -1,0 +1,17 @@
+//DAY40 
+
+
+class Solution:
+    def deleteK(self, head, k):
+        if k==1:
+            return 
+        temp,i = head,1
+        while temp and temp.next:
+            if i==k-1:
+                temp.next = temp.next.next
+                i=0
+            else:
+                temp = temp.next
+                i+=1
+        return head
+
