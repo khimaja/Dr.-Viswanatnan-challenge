@@ -1,0 +1,48 @@
+//DAY42
+
+#User function Template for python3
+class Solution:
+    #Function to reverse a linked list.
+    def arrangeCV(self, head):
+        # Code here
+        
+        dummy=Node(-1)
+        
+        dummy.next=head
+        
+         
+        vowelEnd=dummy
+        vowels=['a','e','i','o','u']
+        
+        while vowelEnd.next!=None and vowelEnd.next.data in vowels:
+            vowelEnd=vowelEnd.next
+            
+        def insertNode(node1,vNode):
+            nxt=node1.next
+            node1.next=vNode
+            vNode.next=nxt
+            
+            return vNode
+            
+        def deleteNode(curNode):
+            vNode=curNode.next
+            curNode.next=curNode.next.next
+            vNode.next=None
+            
+            return vNode
+            
+            
+        vowelPointer=vowelEnd
+        
+        while vowelPointer.next!=None:
+            
+            while vowelPointer.next!=None and vowelPointer.next.data not in vowels:
+                vowelPointer=vowelPointer.next
+                
+            
+            if vowelPointer!=None and vowelPointer.next!=None and vowelPointer.next.data in vowels:
+                vNode=deleteNode(vowelPointer)
+                vowelEnd=insertNode(vowelEnd,vNode)
+                
+        return dummy.next
+
