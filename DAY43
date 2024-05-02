@@ -1,0 +1,44 @@
+//DAY43
+
+#User function Template for python3
+
+
+'''
+class Node:
+    def __init__(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+'''
+
+class Solution:
+    #Function to serialize a tree and return a list containing nodes of tree.
+    def serialize(self, root):
+        #code here
+        def preorder(node):
+            if not node:
+                result.append(None)  # Use None to represent empty node
+            else:
+                result.append(node.data)
+                preorder(node.left)
+                preorder(node.right)
+        
+        result = []
+        preorder(root)
+        return result
+    
+    #Function to deserialize a list and construct the tree.   
+    def deSerialize(self, a):
+        #code here
+        def build_tree():
+            val = next(data_iter)
+            if val is None:
+                return None
+            node = Node(val)
+            node.left = build_tree()
+            node.right = build_tree()
+            return node
+    
+        data_iter = iter(a)
+        return build_tree()
+        
