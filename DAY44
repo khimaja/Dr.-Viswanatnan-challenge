@@ -1,0 +1,28 @@
+//DAY44
+
+
+
+
+'''
+class Node:
+    def _init_(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+'''
+class Solution:
+    def KDistance(self,root,k):
+    
+        result = []
+        self.dfs(root, k, result)
+        return result
+
+    def dfs(self, node, k, result, distance=0):
+        if not node:
+            return
+        if distance == k:
+            result.append(node.data)
+            return  
+        
+        self.dfs(node.left, k, result, distance + 1)
+        self.dfs(node.right, k, result, distance + 1)
