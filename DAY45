@@ -1,0 +1,40 @@
+//DAY45
+
+
+#User function Template for python3
+class Solution:
+    # Function to construct binary tree from postorder and inorder traversals.
+    def buildUtil(self, In, post, inStrt, inEnd, pIndex):
+        # Base case
+        if inStrt > inEnd:
+            return None
+
+        # Picking current node from postorder traversal using pIndex
+        # and decrementing pIndex.
+        node = Node(post[pIndex[0]])
+        pIndex[0] -= 1
+
+        # If this node has no children then we return the node.
+        if inStrt == inEnd:
+            return node
+
+        # Else we find the index of this node in inorder traversal.
+        iIndex = self.search(In, inStrt, inEnd, node.data)
+
+        # Using index in inorder traversal, we construct right and left subtrees
+        # by calling the function buildUtil recursively.
+        node.right = self.buildUtil(In, post, iIndex + 1, inEnd, pIndex)
+        node.left = self.buildUtil(In, post, inStrt, iIndex - 1, pIndex)
+
+        return node
+
+    # Function to return a tree created from postorder and inorder traversals.
+    def buildTree(self, In, post, n):
+        pIndex = [n - 1]
+        return self.buildUtil(In, post, 0, n - 1, pIndex)
+
+    # Function to find index of a value in array.
+    def search(self, arr, strt, end, value):
+        for i in range(strt, end + 1):
+            if arr[i] == value:
+                return i
