@@ -1,0 +1,7 @@
+//DAY50
+
+#User function Template for python3
+
+class Solution:
+    def divisorGame(self, n):
+        return (True if n%2==0 else False)
