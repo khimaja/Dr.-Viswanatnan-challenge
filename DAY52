@@ -1,0 +1,19 @@
+//DAY52
+
+
+#User function Template for python3
+
+class Solution:
+    def jugglerSequence(self, n):
+        # code here
+        l=[]
+        l.append(n)
+        while n>1:
+            if n%2==0:
+                n=int(n**0.5)
+                l.append(n)
+            else:
+                n=int(n**1.5)
+                l.append(n)
+        return l
+        
