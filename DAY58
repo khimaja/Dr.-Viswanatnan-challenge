@@ -1,0 +1,18 @@
+//Day58
+
+
+
+from typing import List
+
+
+class Solution:
+    def findPair(self, n : int, x : int, arr : List[int]) -> int:
+        arr.sort()
+        
+        s = set()
+        for i in reversed(arr):
+            if x+i in s:
+                return 1
+            s.add(i)
+            
+        return -1
