@@ -1,0 +1,32 @@
+//DAY60
+
+
+from typing import List
+
+
+class Solution:
+    def findClosest(self, n : int, k : int, arr : List[int]) -> int:
+        # code here
+        ans = 10**9
+        diff = float('inf')
+        i , j = 0, n-1
+        
+        while i <= j:
+            mid = (i+j)//2
+            if k == arr[mid]:
+                return arr[mid]
+            
+            currDiff = abs(k - arr[mid])
+            if abs(ans - k) > currDiff or (abs(ans-k) == currDiff and ans < arr[mid]):
+                ans = arr[mid]
+            
+            if k < arr[mid]:
+                j = mid-1
+            else:
+                i= mid+1
+            
+        return ans
+        
+
+
+
