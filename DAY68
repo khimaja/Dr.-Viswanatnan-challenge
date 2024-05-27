@@ -1,0 +1,14 @@
+//DAY68
+
+
+from typing import List
+
+
+class Solution:
+    def longestSubseq(self, n : int, a : List[int]) -> int:
+        # code here
+        dp=dict()
+        for item in a:
+            dp[item]=1+max(dp.get(item-1,0),dp.get(item+1,0))
+        return max(dp.values()) 
+
