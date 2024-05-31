@@ -1,0 +1,12 @@
+//DAY72
+
+#User function Template for python3
+class Solution:
+    def swapNibbles(self, n: int) -> int:
+        # Extract the higher-order nibble and shift it right by 4 bits
+        high_nibble = (n & 0xF0) >> 4
+        # Extract the lower-order nibble and shift it left by 4 bits
+        low_nibble = (n & 0x0F) << 4
+        # Combine the two nibbles
+        result = high_nibble | low_nibble
+        return result
