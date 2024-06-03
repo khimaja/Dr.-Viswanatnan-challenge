@@ -1,0 +1,20 @@
+//DAY75
+
+#User function Template for python3
+class Solution:
+    def numberOfConsecutiveOnes (ob,n):
+        # code here 
+        mod = 10 ** 9 + 7
+        ans = 1
+        first = 0
+        second = 1
+        counter = 3
+        while counter <= n:
+            ans = (ans * 2 + first + second) % mod
+            first = first % mod
+            second = second % mod
+            temp = first
+            first = second
+            second = second + temp
+            counter += 1
+        return ans
