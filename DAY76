@@ -1,0 +1,14 @@
+//day76
+
+#User function Template for python3
+class Solution:
+    def binaryNextNumber(self, s):
+        #n=len(s)
+        #num=0
+        #cnt=0
+        #for i in range(n-1,-1,-1):
+        #    num=num+int(s[i])*(2**cnt)
+        #    cnt+=1
+        res=bin(int(s,2)+1)[2:]
+        return res
+           
