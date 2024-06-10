@@ -1,0 +1,14 @@
+//DAY82
+
+#User function Template for python3
+class Solution:
+
+    def matchPairs(self, n, nuts, bolts):
+        # code here
+        sets = set(nuts)
+        nuts.clear()
+        bolts.clear()
+        for i in [ '!','#','$','%','&','*','?','@','^' ]:
+            if i in sets:
+                nuts.append(i)
+                bolts.append(i)
