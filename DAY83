@@ -1,0 +1,28 @@
+//DAY83
+
+        orders = [(i, abs(arr[i] - brr[i])) for i in range(n)]
+        
+        orders.sort(key=lambda x: x[1], reverse=True)
+        
+        total_tips = 0
+        waiter1_orders = 0
+        waiter2_orders = 0
+        
+        for i, _ in orders:
+            if arr[i] > brr[i]:
+                if waiter1_orders < x:
+                    total_tips += arr[i]
+                    waiter1_orders += 1
+                else:
+                    total_tips += brr[i]
+                    waiter2_orders += 1
+            else:
+                if waiter2_orders < y:
+                    total_tips += brr[i]
+                    waiter2_orders += 1
+                else:
+                    total_tips += arr[i]
+                    waiter1_orders += 1
+                    
+        return total_tips
+            
