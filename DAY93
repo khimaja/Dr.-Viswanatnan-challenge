@@ -1,0 +1,6 @@
+//DAY93
+class Solution:
+    def ExtractNumber(self,sen):
+        numbers = [int(item) for item in sen.split() if item.isnumeric() and '9' not in item]
+        return max(numbers, default=-1)
+        #code here
