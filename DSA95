@@ -1,0 +1,15 @@
+//DAY95
+
+class Solution:
+    def rotateMatrix(self, k, mat):
+        # code here
+        n=len(mat[0])
+        r=k%n
+        m=len(mat)
+        for i in range(m):
+            x=mat[i][r:]
+            mat[i]=x+mat[i][:r]
+            #print("x=",x,"mat[i]=",mat[i])
+        return mat
+        
+
